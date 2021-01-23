@@ -23,4 +23,14 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
             ->getResult();
 
     }
+
+    public function findFiftyLessArea()
+    {
+        return $this->createQueryBuilder('vff')
+            ->select('vff.villeNom')
+            ->orderBy('vff.villeSurface', 'ASC')
+            ->setMaxResults(50)
+            ->getQuery()
+            ->getResult();
+    }
 }

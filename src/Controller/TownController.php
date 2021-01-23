@@ -25,4 +25,12 @@ class TownController
     {
         return new JsonResponse($this->villesFranceFreeRepository->findTenMostPoulated());
     }
+
+    /**
+     * @Route("/town/50-less-area", name="town_50_less_area")
+     */
+    public function fiftyLessArea(): Response
+    {
+        return new JsonResponse($this->villesFranceFreeRepository->findFiftyLessArea());
+    }
 }

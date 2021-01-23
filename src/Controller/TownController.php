@@ -9,13 +9,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TownController
 {
+    private $villesFranceFreeRepository;
+
+    public function __construct(VillesFranceFreeRepository $villesFranceFreeRepository)
+    {
+        $this->villesFranceFreeRepository = $villesFranceFreeRepository;
+    }
+
+    
+
     /**
      * @Route("/town/10-most-populated", name="town_10_most_populated")
      */
-    public function tenMostPopulated(VillesFranceFreeRepository $villesFranceFreeRepository): Response
+    public function tenMostPopulated(): Response
     {
-        $tenMostPopulatedTownInFrance = $villesFranceFreeRepository->findTenMostPoulated();
-
-        return new JsonResponse($tenMostPopulatedTownInFrance);
+        return new JsonResponse($this->villesFranceFreeRepository->findTenMostPoulated());
     }
 }

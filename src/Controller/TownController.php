@@ -16,8 +16,6 @@ class TownController
         $this->villesFranceFreeRepository = $villesFranceFreeRepository;
     }
 
-    
-
     /**
      * @Route("/town/10-most-populated", name="town_10_most_populated")
      */
@@ -32,5 +30,13 @@ class TownController
     public function fiftyLessArea(): Response
     {
         return new JsonResponse($this->villesFranceFreeRepository->findFiftyLessArea());
+    }
+
+    /**
+     * @Route("/town/10-most-populated-with-departement", name="town_ten_most_populated_with_departement")
+     */
+    public function tenMostPopulatedWithDepartment()
+    {   
+        return new JsonResponse($this->villesFranceFreeRepository->findTenMostPoulatedWithDepartments());
     }
 }

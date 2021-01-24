@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Departement;
 use App\Entity\VillesFranceFree;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,6 +31,17 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
             ->select('vff.villeNom')
             ->orderBy('vff.villeSurface', 'ASC')
             ->setMaxResults(50)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findTenMostPoulatedWithDepartments()
+    {
+        return $this->createQueryBuilder('vff')
+            ->select(['vff.villeNom', 'd.departementNom'])
+            ->leftJoin(Departement::class, 'd', 'WITH', 'd.departementCode = vff.villeDepartement')
+            ->orderBy('vff.villePopulation2012', 'desc')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }

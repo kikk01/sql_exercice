@@ -17,7 +17,7 @@ class TownController
     }
 
     /**
-     * @Route("/town/10-most-populated", name="town_10_most_populated")
+     * @Route("/ville/10-most-populated", name="town_10_most_populated")
      */
     public function tenMostPopulated(): Response
     {
@@ -25,7 +25,7 @@ class TownController
     }
 
     /**
-     * @Route("/town/50-less-area", name="town_50_less_area")
+     * @Route("/ville/50-less-area", name="town_50_less_area")
      */
     public function fiftyLessArea(): Response
     {
@@ -33,7 +33,7 @@ class TownController
     }
 
     /**
-     * @Route("/town/10-most-populated-with-departement", name="town_ten_most_populated_with_departement")
+     * @Route("/ville/10-most-populated-with-departement", name="town_ten_most_populated_with_departement")
      */
     public function tenMostPopulatedWithDepartment()
     {   
@@ -41,7 +41,7 @@ class TownController
     }
 
     /**
-     * @Route("/town/nom-qui-commence-par-saint/nombre", name="town_name_begin_by_saint_count")
+     * @Route("/ville/nom-qui-commence-par-saint/nombre", name="town_name_begin_by_saint_count")
      */
     public function nameBeginBySaintCount()
     {
@@ -49,7 +49,7 @@ class TownController
     }
 
     /**
-     * @Route("/town/du-meme-nom", name="town_non_unique_name_and_count")
+     * @Route("/ville/du-meme-nom", name="town_non_unique_name_and_count")
      */
     public function nonUniqueNameAndCount()
     {

@@ -47,4 +47,12 @@ class TownController
     {
         return new JsonResponse($this->villesFranceFreeRepository->findNameBeginBySaint());
     }
+
+    /**
+     * @Route("/town/du-meme-nom", name="town_non_unique_name_and_count")
+     */
+    public function nonUniqueNameAndCount()
+    {
+        return new JsonResponse($this->villesFranceFreeRepository->findNonUniqueNameAndCount());
+    }
 }

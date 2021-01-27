@@ -54,4 +54,15 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getScalarResult();
     }
+
+    public function findNonUniqueNameAndCount()
+    {
+        return $this->createQueryBuilder('vff')
+            ->select(['vff.villeNom', 'count(vff) as count'])
+            ->groupBy('vff.villeNom')
+            ->having('count(vff) > 1')
+            ->orderBy('count', 'desc')
+            ->getQuery()
+            ->getResult();
+    }
 }

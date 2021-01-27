@@ -32,4 +32,12 @@ class DepartmentController
     {
         return new JsonResponse($this->departementRepository->getDepartmentNameAndCodeWithTownCount());
     }
+
+    /**
+     * @Route("/departement/liste/par-superficie", name="department_by_superficie")
+     */
+    public function listByArea()
+    {
+        return new JsonResponse($this->departementRepository->findTenBiggestAreaDepartments());
+    }
 }

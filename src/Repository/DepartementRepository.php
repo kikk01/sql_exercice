@@ -32,4 +32,16 @@ class DepartementRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findTenBiggestAreaDepartments()
+    {
+        return $this->createQueryBuilder('d')
+            ->select(['d.departementNom', 'sum(vff.villeSurface) as totalArea'])
+            ->join(VillesFranceFree::class, 'vff', 'WHERE', 'vff.villeDepartement = d.departementCode')
+            ->groupBy('d.departementNom')
+            ->orderBy('totalArea', 'desc')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 }

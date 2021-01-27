@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\DepartementRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Profiler\Profiler;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DepartmentController
@@ -22,5 +23,13 @@ class DepartmentController
     public function overseasList(): Response
     {
         return new JsonResponse($this->departementRepository->findOverseas());
+    }
+
+    /**
+     * @Route("/departement/liste/avec-nombre-de-villes", name="department_list_with_town_count")
+     */
+    public function listWithTownCount(): Response
+    {
+        return new JsonResponse($this->departementRepository->getDepartmentNameAndCodeWithTownCount());
     }
 }

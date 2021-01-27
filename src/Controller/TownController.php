@@ -39,4 +39,12 @@ class TownController
     {   
         return new JsonResponse($this->villesFranceFreeRepository->findTenMostPoulatedWithDepartments());
     }
+
+    /**
+     * @Route("/town/nom-qui-commence-par-saint/nombre", name="town_name_begin_by_saint_count")
+     */
+    public function nameBeginBySaintCount()
+    {
+        return new JsonResponse($this->villesFranceFreeRepository->findNameBeginBySaint());
+    }
 }

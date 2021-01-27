@@ -45,4 +45,13 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findNameBeginBySaint()
+    {
+        return $this->createQueryBuilder('vff')
+            ->select('count(vff.villeId)')
+            ->where('vff.villeNom like \'SAINT%\'')
+            ->getQuery()
+            ->getScalarResult();
+    }
 }

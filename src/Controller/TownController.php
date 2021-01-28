@@ -64,4 +64,12 @@ class TownController
    {
         return new JsonResponse($this->villesFranceFreeRepository->findAreaGreaterThanAverage());
    }
+       
+   /**
+    * @Route("/ville/remplace-tiret-par-espace-toute-ville-commencant-par-saint", name="town_replace_dash_by_space_for_town_begin_by_saint")
+    */
+    public function replaceDashBySpaceForTownBeginBySaint()
+    {
+         return new JsonResponse($this->villesFranceFreeRepository->replaceDashBySpaceForTownBeginBySaint());
+    }
 }

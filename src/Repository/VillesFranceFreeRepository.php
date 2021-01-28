@@ -91,4 +91,14 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function replaceDashBySpaceForTownBeginBySaint()
+    {
+        $stmt = $this->getEntityManager()->getConnection()->prepare('
+            update villes_france_free 
+            set ville_nom = REPLACE(ville_nom, "-", " ")
+            where ville_nom like "SAINT%"
+        ');
+        $stmt->execute();
+    }
 }

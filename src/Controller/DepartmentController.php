@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\DepartementRepository;
+use App\Repository\VillesFranceFreeRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Profiler\Profiler;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DepartmentController
@@ -40,4 +40,12 @@ class DepartmentController
     {
         return new JsonResponse($this->departementRepository->findTenBiggestAreaDepartments());
     }
+
+    /**
+    * @Route("/departement/population-superieur-a-2000000", name="department_population_over_than_two_millions")
+    */
+   public function populationOverThanTwoMillion(VillesFranceFreeRepository $villesFranceFreeRepository)
+   {
+        return new JsonResponse($villesFranceFreeRepository->findTotalPopulationOverTwoMillionbyDepartement());
+   }
 }

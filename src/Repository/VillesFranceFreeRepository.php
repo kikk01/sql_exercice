@@ -80,4 +80,15 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
         $stmt->execute();
         return $stmt->fetchAllNumeric(); 
     }
+
+    public function findTotalPopulationOverTwoMillionbyDepartement()
+    {
+        return $this->createQueryBuilder('vff')
+            ->select(['vff.villeDepartement', 'SUM(vff.villePopulation2012) AS population2012'])
+            ->groupBy('vff.villeDepartement')
+            ->having('population2012 > :populationMax')
+            ->setParameter(':populationMax', 2000000)
+            ->getQuery()
+            ->getResult();
+    }
 }

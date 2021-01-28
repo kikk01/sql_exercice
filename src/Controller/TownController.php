@@ -53,6 +53,15 @@ class TownController
      */
     public function nonUniqueNameAndCount()
     {
+        //return new Response('<html><body>Lucky number: </body></html>');
         return new JsonResponse($this->villesFranceFreeRepository->findNonUniqueNameAndCount());
-    }
+    }    
+    
+    /**
+    * @Route("/ville/surface-superieur-a-la-moyenne", name="town_area_greater_than_average")
+    */
+   public function areaGeraterThanAverage()
+   {
+        return new JsonResponse($this->villesFranceFreeRepository->findAreaGreaterThanAverage());
+   }
 }

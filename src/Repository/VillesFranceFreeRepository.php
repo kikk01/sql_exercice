@@ -6,6 +6,7 @@ use App\Entity\Departement;
 use App\Entity\VillesFranceFree;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Stmt;
 
 class VillesFranceFreeRepository extends ServiceEntityRepository
 {
@@ -64,5 +65,19 @@ class VillesFranceFreeRepository extends ServiceEntityRepository
             ->orderBy('count', 'desc')
             ->getQuery()
             ->getResult();
+    }
+
+    public function findAreaGreaterThanAverage()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $stmt = $conn->prepare('
+            SELECT vff.ville_nom, vff.ville_surface 
+            FROM villes_france_free vff 
+            WHERE ville_surface > (SELECT AVG(ville_surface) from villes_france_free)
+            ORDER BY ville_surface
+        ');
+
+        $stmt->execute();
+        return $stmt->fetchAllNumeric(); 
     }
 }
